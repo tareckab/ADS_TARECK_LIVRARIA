@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.upf.livraria.resources","c":"JakartaEE10Resource","l":"JakartaEE10Resource()","u":"%3Cinit%3E()"},{"p":"com.upf.livraria","c":"JakartaRestConfiguration","l":"JakartaRestConfiguration()","u":"%3Cinit%3E()"},{"p":"com.upf.livraria.resources","c":"JakartaEE10Resource","l":"ping()"}];updateSearchResults();
