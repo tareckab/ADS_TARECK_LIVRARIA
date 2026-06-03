@@ -3,7 +3,7 @@
 @options
 @packages
 -classpath
-'C:/Users/tarec/.m2/repository/jakarta/platform/jakarta.jakartaee-api/10.0.0/jakarta.jakartaee-api-10.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/platform/jakarta.jakartaee-web-api/10.0.0/jakarta.jakartaee-web-api-10.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/3.1.0/jakarta.servlet.jsp-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/el/jakarta.el-api/5.0.1/jakarta.el-api-5.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/websocket/jakarta.websocket-api/2.1.0/jakarta.websocket-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/websocket/jakarta.websocket-client-api/2.1.0/jakarta.websocket-client-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/json/jakarta.json-api/2.1.0/jakarta.json-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/json/bind/jakarta.json.bind-api/3.0.0/jakarta.json.bind-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar;C:/Users/tarec/.m2/repository/jakarta/ejb/jakarta.ejb-api/4.0.1/jakarta.ejb-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar;C:/Users/tarec/.m2/repository/jakarta/interceptor/jakarta.interceptor-api/2.1.0/jakarta.interceptor-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/enterprise/jakarta.enterprise.cdi-api/4.0.1/jakarta.enterprise.cdi-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/enterprise/jakarta.enterprise.lang-model/4.0.1/jakarta.enterprise.lang-model-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/authentication/jakarta.authentication-api/3.0.0/jakarta.authentication-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/security/enterprise/jakarta.security.enterprise-api/3.0.0/jakarta.security.enterprise-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/jms/jakarta.jms-api/3.1.0/jakarta.jms-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/mail/jakarta.mail-api/2.1.0/jakarta.mail-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/resource/jakarta.resource-api/2.1.0/jakarta.resource-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/authorization/jakarta.authorization-api/2.1.0/jakarta.authorization-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/batch/jakarta.batch-api/2.1.1/jakarta.batch-api-2.1.1.jar'
+'C:/Users/tarec/.m2/repository/jakarta/platform/jakarta.jakartaee-api/10.0.0/jakarta.jakartaee-api-10.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/platform/jakarta.jakartaee-web-api/10.0.0/jakarta.jakartaee-web-api-10.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jsp/jakarta.servlet.jsp-api/3.1.0/jakarta.servlet.jsp-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/el/jakarta.el-api/5.0.1/jakarta.el-api-5.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/faces/jakarta.faces-api/4.0.1/jakarta.faces-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.1.0/jakarta.ws.rs-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/websocket/jakarta.websocket-api/2.1.0/jakarta.websocket-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/websocket/jakarta.websocket-client-api/2.1.0/jakarta.websocket-client-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/json/jakarta.json-api/2.1.0/jakarta.json-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/json/bind/jakarta.json.bind-api/3.0.0/jakarta.json.bind-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar;C:/Users/tarec/.m2/repository/jakarta/ejb/jakarta.ejb-api/4.0.1/jakarta.ejb-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar;C:/Users/tarec/.m2/repository/jakarta/interceptor/jakarta.interceptor-api/2.1.0/jakarta.interceptor-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/enterprise/jakarta.enterprise.cdi-api/4.0.1/jakarta.enterprise.cdi-api-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/enterprise/jakarta.enterprise.lang-model/4.0.1/jakarta.enterprise.lang-model-4.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar;C:/Users/tarec/.m2/repository/jakarta/authentication/jakarta.authentication-api/3.0.0/jakarta.authentication-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/security/enterprise/jakarta.security.enterprise-api/3.0.0/jakarta.security.enterprise-api-3.0.0.jar;C:/Users/tarec/.m2/repository/jakarta/jms/jakarta.jms-api/3.1.0/jakarta.jms-api-3.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/mail/jakarta.mail-api/2.1.0/jakarta.mail-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/resource/jakarta.resource-api/2.1.0/jakarta.resource-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/authorization/jakarta.authorization-api/2.1.0/jakarta.authorization-api-2.1.0.jar;C:/Users/tarec/.m2/repository/jakarta/batch/jakarta.batch-api/2.1.1/jakarta.batch-api-2.1.1.jar;C:/Users/tarec/.m2/repository/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar'
 -encoding
 'UTF-8'
 -protected
@@ -26,8 +26,11 @@
 -version
 -windowtitle
 'Livraria-1.0-SNAPSHOT 1.0-SNAPSHOT API'
+com.upf.livraria.controller
+com.upf.livraria.entity
 com.upf.livraria
 com.upf.livraria.resources
+com.upf.livraria.view
 C:\Users\tarec\.m2\repository\jakarta\platform\jakarta.jakartaee-api\10.0.0\jakarta.jakartaee-api-10.0.0.jar = 1779924182523
 C:\Users\tarec\.m2\repository\jakarta\platform\jakarta.jakartaee-web-api\10.0.0\jakarta.jakartaee-web-api-10.0.0.jar = 1779924182953
 C:\Users\tarec\.m2\repository\jakarta\servlet\jakarta.servlet-api\6.0.0\jakarta.servlet-api-6.0.0.jar = 1779924183048
@@ -57,25 +60,27 @@ C:\Users\tarec\.m2\repository\jakarta\mail\jakarta.mail-api\2.1.0\jakarta.mail-a
 C:\Users\tarec\.m2\repository\jakarta\resource\jakarta.resource-api\2.1.0\jakarta.resource-api-2.1.0.jar = 1779924186306
 C:\Users\tarec\.m2\repository\jakarta\authorization\jakarta.authorization-api\2.1.0\jakarta.authorization-api-2.1.0.jar = 1779924187012
 C:\Users\tarec\.m2\repository\jakarta\batch\jakarta.batch-api\2.1.1\jakarta.batch-api-2.1.1.jar = 1779924187464
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\src\main\java = 1779924204082
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\generated-sources\annotations = 1779924472949
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\allclasses-index.html = 1779924605233
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\allpackages-index.html = 1779924605237
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\copy.svg = 1779924605297
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\element-list = 1779924605102
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\help-doc.html = 1779924605285
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\index-all.html = 1779924605265
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\index.html = 1779924605211
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\link.svg = 1779924605301
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\member-search-index.js = 1779924605249
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\module-search-index.js = 1779924605240
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\overview-summary.html = 1779924605273
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\overview-tree.html = 1779924605203
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\package-search-index.js = 1779924605243
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\script.js = 1779924605294
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search-page.js = 1779924605310
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search.html = 1779924605270
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search.js = 1779924605306
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\stylesheet.css = 1779924605289
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\tag-search-index.js = 1779924605251
-C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\type-search-index.js = 1779924605245
+C:\Users\tarec\.m2\repository\org\postgresql\postgresql\42.7.3\postgresql-42.7.3.jar = 1780444176324
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\src\main\java = 1780441259364
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\generated-sources\annotations = 1780447683669
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\allclasses-index.html = 1780447690709
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\allpackages-index.html = 1780447690716
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\copy.svg = 1780447690812
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\element-list = 1780447690410
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\help-doc.html = 1780447690800
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\index-all.html = 1780447690769
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\index.html = 1780447690665
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\link.svg = 1780447690816
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\member-search-index.js = 1780447690730
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\module-search-index.js = 1780447690720
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\overview-summary.html = 1780447690780
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\overview-tree.html = 1780447690657
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\package-search-index.js = 1780447690723
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\script.js = 1780447690809
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search-page.js = 1780447690824
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search.html = 1780447690774
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\search.js = 1780447690820
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\serialized-form.html = 1780447690514
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\stylesheet.css = 1780447690805
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\tag-search-index.js = 1780447690732
+C:\Users\tarec\OneDrive\Documentos\NetBeansProjects\Livraria\target\reports\apidocs\type-search-index.js = 1780447690726

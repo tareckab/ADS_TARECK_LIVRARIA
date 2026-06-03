@@ -1,2 +1,11 @@
-com\upf\livraria\JakartaRestConfiguration.class
+com\upf\livraria\controller\LivroController.class
 com\upf\livraria\resources\JakartaEE10Resource.class
+com\upf\livraria\view\LivrariaView.class
+com\upf\livraria\entity\Cliente.class
+com\upf\livraria\entity\Livraria.class
+com\upf\livraria\controller\ClienteController.class
+com\upf\livraria\controller\LivrosReservadosController.class
+com\upf\livraria\controller\LivrariaController.class
+com\upf\livraria\entity\Livro.class
+com\upf\livraria\JakartaRestConfiguration.class
+com\upf\livraria\entity\LivrosReservados.class
