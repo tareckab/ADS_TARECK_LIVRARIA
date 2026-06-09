@@ -1,31 +1,72 @@
 # Sistema de Livraria
 
-Projeto desenvolvido para a disciplina da faculdade com o objetivo de simular o funcionamento de uma livraria digital, permitindo o gerenciamento de livros, clientes e operações do sistema de forma prática e organizada.
-
-O sistema construído utilizando **Java** como linguagem principal, seguindo conceitos de orientação a objetos e boas práticas de desenvolvimento. A aplicação utiliza **Manhattan** para construção da interface, **GlassFish** como servidor de aplicação e **JavaRakta** para integração e gerenciamento dos componentes do projeto.
-
-## Funcionalidades
-
-- Cadastro de livros
-- Listagem e busca de livros
-- Controle de clientes
-- Gerenciamento de estoque
-- Operações de compra e venda
-- Interface intuitiva para administração do sistema
+Projeto desenvolvido utilizando Jakarta EE 10, JPA, JAX-RS e PostgreSQL para gerenciamento de livrarias, livros, clientes e reservas.
 
 ## Tecnologias Utilizadas
+- Java 11
+- Jakarta EE 10
+- JPA (Jakarta Persistence)
+- JAX-RS
+- Maven
+- PostgreSQL
+- GlassFish Server
 
-- Java
-- Manhattan
-- GlassFish
-- JavaRakta
+## Estrutura do Projeto
+- controller
+- entity
+- resources
+- view
 
-## Objetivo do Projeto
+## Modelo de Dados
+Cliente:
+- id
+- nome
+- idade
+- cpf
 
-O principal objetivo deste projeto é aplicar na prática conceitos estudados durante o curso, como:
-- Programação Orientada a Objetos
-- Desenvolvimento de aplicações Java
-- Arquitetura MVC
-- Desenvolvimento web com javarakta
+Livraria:
+- id
+- nome
+- endereco
+- qtdLivros
 
+Livro:
+- id
+- titulo
+- autor
+- paginas
+- livraria
 
+Livros Reservados:
+- id
+- livro
+- cliente
+
+## Relacionamentos
+- Uma Livraria possui vários Livros.
+- Um Cliente pode reservar vários Livros.
+- Um Livro pode estar associado a uma reserva.
+
+## Configuração
+Datasource:
+jdbc/livraria
+
+## Execução
+1. git clone <repositorio>
+2. mvn clean package
+3. Deploy do arquivo WAR no GlassFish
+
+## Endpoints
+Clientes:
+GET, POST, PUT, DELETE
+
+Livrarias:
+GET, POST, PUT, DELETE
+
+Livros:
+GET, POST, PUT, DELETE
+
+Reservas:
+GET, POST, PUT, DELETE
+
+Autor: Tareck
