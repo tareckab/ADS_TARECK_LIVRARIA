@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.upf.livraria"},{"l":"com.upf.livraria.controller"},{"l":"com.upf.livraria.entity"},{"l":"com.upf.livraria.resources"},{"l":"com.upf.livraria.view"}];updateSearchResults();
