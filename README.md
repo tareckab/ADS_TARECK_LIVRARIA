@@ -3,9 +3,10 @@
 Projeto desenvolvido utilizando Jakarta EE 10, JPA, JAX-RS e PostgreSQL para gerenciamento de livrarias, livros, clientes e reservas.
 
 ## Tecnologias Utilizadas
-- Java 11
+- Java 21
 - Jakarta EE 10
 - JPA (Jakarta Persistence)
+- JSF facelets
 - JAX-RS
 - Maven
 - PostgreSQL
