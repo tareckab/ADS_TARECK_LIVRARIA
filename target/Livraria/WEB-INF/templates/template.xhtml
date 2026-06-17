@@ -5,27 +5,37 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Livraria - Dashboard</title>
+    <h:outputStylesheet library="css" name="dashboard.css" />
 </h:head>
 <h:body>
-    <h:form id="formTopo">
-        <p:toolbar>
-            <p:toolbarGroup>
-                <h:outputText value="Livraria" style="font-weight:bold;font-size:1.2em" />
-            </p:toolbarGroup>
-            <p:toolbarGroup align="right">
-<h:outputText value="Olá, #{sessionScope.clienteLogado.nome}" style="margin-right:10px" />   
-<p:commandButton value="Sair" action="#{loginController.logout}" />
-            </p:toolbarGroup>
-        </p:toolbar>
-    </h:form>
 
-    <div style="display:flex;">
-        <div style="width:220px;">
-            <ui:include src="/dashboard/sidebar.xhtml" />
-        </div>
-        <div style="flex:1;padding:20px;">
-            <ui:insert name="content">Conteúdo padrão</ui:insert>
-        </div>
+    <div class="lv-shell">
+
+        <ui:include src="/dashboard/sidebar.xhtml" />
+
+        <main class="lv-main">
+
+            <header class="lv-header">
+                <h1 class="lv-greeting">
+                    Seja bem vindo de volta, <span>#{sessionScope.clienteLogado.nome}</span>
+                </h1>
+
+                <h:form id="formTopo">
+                    <div class="lv-user-widget">
+                        <div class="lv-avatar">#{sessionScope.clienteLogado.nome.substring(0,1)}</div>
+                        <span class="lv-user-name">#{sessionScope.clienteLogado.nome}</span>
+                        <p:commandLink action="#{loginController.logout}" styleClass="lv-logout" title="Sair">
+                            <span class="pi pi-sign-out"></span>
+                        </p:commandLink>
+                    </div>
+                </h:form>
+            </header>
+
+            <ui:insert name="content">Conteúdo</ui:insert>
+
+        </main>
+
     </div>
+
 </h:body>
 </html>

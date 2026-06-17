@@ -12,7 +12,13 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+    
+    @Column(name = "admin", nullable = false)
+private Boolean admin = Boolean.FALSE;
 
+public Boolean getAdmin() { return admin; }
+public void setAdmin(Boolean admin) { this.admin = admin; }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

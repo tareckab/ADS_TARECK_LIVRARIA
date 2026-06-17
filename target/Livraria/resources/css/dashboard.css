@@ -1,0 +1,179 @@
+
+:root {
+    --lv-bg: #EEF1F4;
+    --lv-surface: #FFFFFF;
+    --lv-ink: #1B2530;
+    --lv-muted: #6B7280;
+    --lv-teal: #1F4B43;
+    --lv-gold: #D9A441;
+    --lv-border: #DCE1E6;
+}
+
+body {
+    background: var(--lv-bg);
+    color: var(--lv-ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+}
+
+.lv-shell {
+    display: flex;
+    gap: 24px;
+    max-width: 1180px;
+    margin: 32px auto;
+    background: var(--lv-surface);
+    border: 1px solid var(--lv-border);
+    border-radius: 28px;
+    box-shadow: 0 18px 40px rgba(31, 75, 67, 0.08);
+    padding: 28px;
+}
+
+.lv-sidebar-wrap {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lv-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--lv-teal);
+    padding: 4px 8px 12px;
+}
+
+.lv-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--lv-teal);
+    border-radius: 16px;
+    color: var(--lv-teal);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lv-nav-item:hover,
+.lv-nav-item:focus-visible {
+    background: var(--lv-teal);
+    color: #fff;
+    outline: none;
+}
+
+.lv-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.lv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lv-greeting {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.lv-greeting span {
+    color: var(--lv-gold);
+}
+
+.lv-user-widget {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--lv-bg);
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+
+.lv-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--lv-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--lv-teal);
+    background: #fff;
+}
+
+.lv-user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.lv-logout {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--lv-teal);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.lv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.lv-card {
+    background: var(--lv-bg);
+    border: 1px solid var(--lv-border);
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.lv-card-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--lv-muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.lv-card--stat .lv-card-value {
+    font-family: Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--lv-teal);
+}
+
+.lv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lv-list li {
+    background: #fff;
+    border: 1px solid var(--lv-border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 880px) {
+    .lv-shell { flex-direction: column; }
+    .lv-sidebar-wrap { flex-direction: row; flex-wrap: wrap; width: auto; }
+    .lv-grid { grid-template-columns: 1fr; }
+}
