@@ -4,20 +4,26 @@ import com.upf.livraria.entity.Cliente;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 public class ClienteFacade {
-
+    
+    
+    
     @PersistenceContext(unitName = "my_persistence_unit")
     private EntityManager em;
 
     public void salvar(Cliente cliente) {
         em.persist(cliente);
     }
-
+public List<Cliente> listarTodos() {
+    return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+}
     
     public Cliente buscarPorCpf(String cpf, String senha) {
-
+        
+        
         try {
             return em.createQuery(
                     "SELECT c FROM Cliente c "

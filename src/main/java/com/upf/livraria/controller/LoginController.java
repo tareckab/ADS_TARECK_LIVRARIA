@@ -71,7 +71,7 @@ public class LoginController implements Serializable {
         HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
         session.setAttribute("clienteLogado", clienteMock);
 
-        return "/index.xhtml?faces-redirect=true";
+        return "/dashboard/index.xhtml?faces-redirect=true";
     }
         
         System.out.println("CPF DIGITADO: [" + cliente.getCpf() + "]");
@@ -89,7 +89,7 @@ public class LoginController implements Serializable {
 
             session.setAttribute("clienteLogado", clienteDB);
 
-            return "/index.xhtml?faces-redirect=true";
+            return "/dashboard/index.xhtml?faces-redirect=true";
         }
         
         
