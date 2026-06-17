@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
@@ -21,8 +23,13 @@ public class Cliente {
     @Column(name = "Idade", nullable = false)
     private Integer idade;
 
-    @Column(name = "Cpf", nullable = false, length = 11)
+   @NotNull
+   @Size(min = 11, max = 11)
+   @Column(name = "Cpf", nullable = false, length = 11)
     private String cpf;
+    
+    @Column(name = "Senha", nullable = false, length = 11)
+    private String senha;
 
     public Integer getId() {
         return id;
@@ -30,6 +37,13 @@ public class Cliente {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+     public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {

@@ -58,6 +58,7 @@ public class ClienteController {
         cliente.setNome(dados.getNome());
         cliente.setIdade(dados.getIdade());
         cliente.setCpf(dados.getCpf());
+        cliente.setSenha(dados.getSenha());
 
         return Response.ok(cliente).build();
     }
