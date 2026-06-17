@@ -1,4 +1,5 @@
 com\upf\livraria\entity\Cliente.class
+com\upf\livraria\view\ClienteView.class
 com\upf\livraria\controller\LivrosReservadosController.class
 com\upf\livraria\facade\LivroFacade.class
 com\upf\livraria\controller\DashboardBean.class

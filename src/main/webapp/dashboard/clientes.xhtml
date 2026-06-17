@@ -1,10 +1,99 @@
 <ui:composition template="/WEB-INF/templates/template.xhtml"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <h2>Clientes</h2>
-        <!-- aqui vai a tabela/CRUD de clientes -->
+        <f:event type="preRenderView" listener="#{loginController.verificarAcessoAdmin}" />
+        <h:form id="formClientes">
+            <h:panelGroup rendered="#{loginController.adminLogado}">
+                <div class="lv-content-header">
+                    <h2>Clientes</h2>
+                    <p:commandButton value="Novo Cliente" icon="pi pi-plus" action="#{clienteView.novoCliente()}" update=":formClienteDlg" oncomplete="PF('dlgCliente').show()" styleClass="p-button-success" />
+                </div>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{loginController.adminLogado}">
+
+            <p:dataTable id="tblClientes" var="cliente" value="#{clienteView.clientes}"
+                        styleClass="lv-data-table"
+                        rowStyleClass="lv-table-row"
+                        paginator="true" rows="10"
+                        paginatorPosition="bottom"
+                        emptyMessage="Nenhum cliente encontrado.">
+                <p:column headerText="ID" sortBy="#{cliente.id}">
+                    <h:outputText value="#{cliente.id}" />
+                </p:column>
+                <p:column headerText="Nome" sortBy="#{cliente.nome}">
+                    <h:outputText value="#{cliente.nome}" />
+                </p:column>
+                <p:column headerText="Idade" sortBy="#{cliente.idade}">
+                    <h:outputText value="#{cliente.idade}" />
+                </p:column>
+                <p:column headerText="CPF" sortBy="#{cliente.cpf}">
+                    <h:outputText value="#{cliente.cpf}" />
+                </p:column>
+                <p:column headerText="Senha">
+                    <h:outputText value="#{cliente.senha}" />
+                </p:column>
+                <p:column headerText="Ações" style="width: 120px; text-align: center;">
+                    <p:commandButton icon="pi pi-pencil"
+                                   title="Editar"
+                                   action="#{clienteView.editarCliente(cliente)}"
+                                   update=":formClienteDlg"
+                                   oncomplete="PF('dlgCliente').show()" />
+                    <p:commandButton icon="pi pi-trash"
+                                   title="Excluir"
+                                   action="#{clienteView.excluirCliente(cliente)}"
+                                   update="tblClientes"
+                                   onclick="return confirm('Deseja remover este cliente?')"
+                                   styleClass="ui-button-danger" />
+                </p:column>
+            </p:dataTable>
+            </h:panelGroup>
+        </h:form>
+
+        <p:dialog id="dlgCliente" header="Cliente" widgetVar="dlgCliente" modal="true" showEffect="fade" hideEffect="fade">
+            <p:ajax event="close" listener="#{clienteView.resetarFormulario()}" />
+            <h:form id="formClienteDlg">
+                <p:messages id="msgClienteDlg"  closable="true" />
+                
+                <div class="p-field p-col-12">
+                    <label>Nome <span style="color: red;">*</span></label>
+                    <p:inputText id="nomeCliente" value="#{clienteView.clienteForm.nome}" styleClass="w-100"
+                                 placeholder="Digite o nome completo" required="true"
+                                 requiredMessage="Nome é obrigatório"
+                                 maxlength="100" />
+                </div>
+                <div class="p-field p-col-12">
+                    <label>Idade <span style="color: red;">*</span></label>
+                    <p:inputNumber value="#{clienteView.clienteForm.idade}" styleClass="w-100"
+                                   placeholder="Idade em anos" minValue="1" required="true"
+                                   requiredMessage="Idade é obrigatória"
+                                   validatorMessage="Idade deve ser maior que 0" />
+                </div>
+                <div class="p-field p-col-12">
+                    <label>CPF <span style="color: red;">*</span></label>
+                    <p:inputText value="#{clienteView.clienteForm.cpf}" styleClass="w-100"
+                                 placeholder="Apenas números, 11 dígitos" required="true"
+                                 requiredMessage="CPF é obrigatório" maxlength="11" />
+                </div>
+                <div class="p-field p-col-12">
+                    <label>Senha <span style="color: red;">*</span></label>
+                    <p:password value="#{clienteView.clienteForm.senha}" styleClass="w-100"
+                                placeholder="Digite uma senha" required="true"
+                                requiredMessage="Senha é obrigatória" maxlength="32" />
+                </div>
+                <div class="p-grid" style="margin-top: 20px; text-align: right;">
+                    <p:commandButton value="Salvar" action="#{clienteView.salvarCliente()}"
+                                     update=":formClientes:tblClientes :formClienteDlg"
+                                     oncomplete="if(!args.validationFailed) { PF('dlgCliente').hide(); }"
+                                     icon="pi pi-check" />
+                    <p:commandButton value="Cancelar" onclick="PF('dlgCliente').hide()" type="button" icon="pi pi-times" />
+                </div>
+            </h:form>
+        </p:dialog>
     </ui:define>
 
 </ui:composition>

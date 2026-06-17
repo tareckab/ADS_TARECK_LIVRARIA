@@ -3,13 +3,102 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
 -->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form id="formLivrarias">
+            <div class="lv-content-header">
+                <h2>Livrarias</h2>
+                    <h:panelGroup rendered="#{loginController.adminLogado}">
+                        <p:commandButton value="Novo" icon="pi pi-plus" action="#{livrariaView.novoLivraria()}" update=":formLivrarias:dlgLivraria" oncomplete="PF('dlgLivraria').show()" />
+                    </h:panelGroup>
+            </div>
+            <div class="p-grid" style="margin-bottom: 10px;">
+                <div class="p-col-12">
+                    <p:inputText value="#{livrariaView.filtroNome}" placeholder="Pesquisar por nome..." styleClass="w-100" >
+                        <p:ajax event="keyup" update="tblLivrarias" />
+                    </p:inputText>
+                </div>
+            </div>
+
+            <p:dataTable id="tblLivrarias" var="livraria" value="#{livrariaView.livrariasFiltradas}"
+                        styleClass="lv-data-table"
+                        rowStyleClass="lv-table-row"
+                        paginator="true" rows="10"
+                        paginatorPosition="bottom"
+                        emptyMessage="Nenhuma livraria encontrada.">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{livraria.nome}" />
+                </p:column>
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{livraria.endereco}" />
+                </p:column>
+                <p:column headerText="Livros">
+                    <h:outputText value="#{livraria.qtdLivros}" />
+                </p:column>
+                <p:column headerText="Ações" style="width: 140px; text-align: center;">
+<p:commandButton
+    icon="pi pi-eye"
+    process="@this"
+    action="#{livrariaView.verLivrosDa(livraria)}"
+    update=":formLivrarias:dlgLivrosPanel"
+    oncomplete="PF('dlgLivros').show()" />
+<h:panelGroup rendered="#{loginController.adminLogado}">
+                        <p:commandButton icon="pi pi-pencil" title="Editar" action="#{livrariaView.editarLivraria(livraria)}" update=":formLivrarias:dlgLivraria" oncomplete="PF('dlgLivraria').show()" />
+                        <p:commandButton icon="pi pi-trash" title="Excluir" action="#{livrariaView.excluirLivraria(livraria)}" update="tblLivrarias" onclick="return confirm('Deseja remover esta livraria?')" styleClass="ui-button-danger" />
+                    </h:panelGroup>
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog id="dlgLivros"
+          header="Livros da Livraria"
+          widgetVar="dlgLivros"
+          modal="true"
+          width="800"
+          resizable="false"
+          closable="true">
+                <h:panelGroup id="dlgLivrosPanel">
+                    <h:outputText value="#{livrariaView.selectedLivraria != null ? livrariaView.selectedLivraria.nome : 'Nenhuma livraria selecionada'}" style="font-weight: bold;" />
+                   <p:dataTable
+    var="livro"
+    value="#{livrariaView.livrosDaSelecionada}"
+    paginator="true"
+    rows="10"
+    paginatorPosition="bottom">
+                        <p:column headerText="Título">
+                            <h:outputText value="#{livro.titulo}" />
+                        </p:column>
+                        <p:column headerText="Autor">
+                            <h:outputText value="#{livro.autor}" />
+                        </p:column>
+                        <p:column headerText="Páginas">
+                            <h:outputText value="#{livro.paginas}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+            </p:dialog>
+
+            <p:dialog id="dlgLivraria" header="Livraria" widgetVar="dlgLivraria" modal="true">
+                    <div class="p-field">
+                        <label>Nome</label>
+                        <p:inputText value="#{livrariaView.livrariaForm.nome}" required="true" />
+                    </div>
+                    <div class="p-field">
+                        <label>Endereço</label>
+                        <p:inputText value="#{livrariaView.livrariaForm.endereco}" />
+                    </div>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <p:commandButton value="Salvar" action="#{livrariaView.salvarLivraria()}" update=":formLivrarias:tblLivrarias" oncomplete="PF('dlgLivraria').hide()" />
+                        <p:commandButton value="Cancelar" type="button" onclick="PF('dlgLivraria').hide()" />
+                    </div>
+            </p:dialog>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

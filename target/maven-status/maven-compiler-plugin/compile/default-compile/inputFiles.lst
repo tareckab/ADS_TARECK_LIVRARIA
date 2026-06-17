@@ -1,11 +1,13 @@
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\entity\LivrosReservados.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\controller\ClienteController.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\resources\JakartaEE10Resource.java
+C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\facade\ReservaFacade.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\controller\LivroBean.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\controller\LivrosReservadosController.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\controller\LivrariaBean.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\entity\Livro.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\controller\DashboardBean.java
+C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\view\ClienteView.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\facade\LivroFacade.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\view\LivrariaView.java
 C:\Users\tareck\Documents\ADS_TARECK_LIVRARIA\src\main\java\com\upf\livraria\JakartaRestConfiguration.java

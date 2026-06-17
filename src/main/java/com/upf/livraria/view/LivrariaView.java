@@ -4,6 +4,9 @@ import com.upf.livraria.entity.Cliente;
 import com.upf.livraria.entity.Livro;
 import com.upf.livraria.entity.Livraria;
 import com.upf.livraria.entity.LivrosReservados;
+import com.upf.livraria.facade.LivrariaFacade;
+import com.upf.livraria.facade.LivroFacade;
+import jakarta.ejb.EJB;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -28,6 +31,10 @@ public class LivrariaView implements Serializable {
     private Cliente clienteForm;
     private LivrosReservados reservaForm;
 
+    // seleção e filtro para a UI de livrarias
+    private Livraria selectedLivraria;
+    private String filtroNome;
+
     private Integer livroLivrariaId;
     private Integer reservaLivroId;
     private Integer reservaClienteId;
@@ -37,22 +44,41 @@ public class LivrariaView implements Serializable {
     private Integer proximoIdCliente = 1;
     private Integer proximoIdReserva = 1;
 
+    @EJB
+    private LivrariaFacade livrariaFacade;
+
+    @EJB
+    private LivroFacade livroFacade;
+
+    private boolean dbAtivo;
+
     @PostConstruct
     public void init() {
-        seedData();
         novoLivraria();
         novoLivro();
         novoCliente();
         novaReserva();
+        carregarDados();
     }
 
     private void seedData() {
-        Livraria central = criarLivraria("Livraria Central", "Rua das Letras, 123", 24);
-        Livraria norte = criarLivraria("Livraria Norte", "Av. dos Livros, 456", 18);
+        livrarias.clear();
+        livros.clear();
+        clientes.clear();
+        reservas.clear();
+        proximoIdLivraria = 1;
+        proximoIdLivro = 1;
+        proximoIdCliente = 1;
+        proximoIdReserva = 1;
+
+        Livraria central = criarLivraria("Livraria Central", "Rua das Letras, 123");
+        Livraria norte = criarLivraria("Livraria Norte", "Av. dos Livros, 456");
 
         Livro domCasmurro = criarLivro("Dom Casmurro", "Machado de Assis", 256, central);
         Livro harry = criarLivro("Harry Potter e a Pedra Filosofal", "J. K. Rowling", 320, central);
         Livro cemAnos = criarLivro("Cem Anos de Solidão", "Gabriel García Márquez", 448, norte);
+
+        atualizarQuantidadeLivrosDasLivrarias();
 
         Cliente ana = criarCliente("Ana Souza", 26, "12345678901");
         Cliente bruno = criarCliente("Bruno Lima", 32, "98765432100");
@@ -62,12 +88,12 @@ public class LivrariaView implements Serializable {
         criarReserva(harry, ana);
     }
 
-    private Livraria criarLivraria(String nome, String endereco, Integer qtdLivros) {
+    private Livraria criarLivraria(String nome, String endereco) {
         Livraria livraria = new Livraria();
         livraria.setId(proximoIdLivraria++);
         livraria.setNome(nome);
         livraria.setEndereco(endereco);
-        livraria.setQtdLivros(qtdLivros);
+        livraria.setQtdLivros(0);
         livrarias.add(livraria);
         return livraria;
     }
@@ -106,31 +132,113 @@ public class LivrariaView implements Serializable {
         livrariaForm = new Livraria();
     }
 
+    public void carregarDados() {
+        try {
+            if (livrariaFacade != null && livroFacade != null) {
+                carregarLivrarias();
+                carregarLivros();
+                atualizarQuantidadeLivrosDasLivrarias();
+                dbAtivo = true;
+                return;
+            }
+        } catch (Exception e) {
+            // erro de carga, fallback para seed em memória
+        }
+        dbAtivo = false;
+        seedData();
+    }
+
+    private void carregarLivrarias() {
+        livrarias.clear();
+        livrarias.addAll(livrariaFacade.listarTodos());
+    }
+
+    private void carregarLivros() {
+        livros.clear();
+        livros.addAll(livroFacade.listarTodos());
+    }
+
+    public void verLivrosDa(Livraria livraria) {
+        this.selectedLivraria = livraria;
+    }
+
+    public Livraria getSelectedLivraria() {
+        return selectedLivraria;
+    }
+
+    public void setSelectedLivraria(Livraria selectedLivraria) {
+        this.selectedLivraria = selectedLivraria;
+    }
+
+    public String getFiltroNome() {
+        return filtroNome;
+    }
+
+    public void setFiltroNome(String filtroNome) {
+        this.filtroNome = filtroNome;
+    }
+
+    public List<Livraria> getLivrariasFiltradas() {
+        if (filtroNome == null || filtroNome.trim().isEmpty()) {
+            return new ArrayList<>(livrarias);
+        }
+        String f = filtroNome.trim().toLowerCase();
+        List<Livraria> resultado = new ArrayList<>();
+        for (Livraria l : livrarias) {
+            if (l.getNome() != null && l.getNome().toLowerCase().contains(f)) {
+                resultado.add(l);
+            }
+        }
+        return resultado;
+    }
+
     public void editarLivraria(Livraria livraria) {
         livrariaForm = copiarLivraria(livraria);
     }
 
     public void salvarLivraria() {
-        if (livrariaForm.getId() == null) {
-            livrariaForm.setId(proximoIdLivraria++);
-            livrarias.add(livrariaForm);
-        } else {
-            substituirLivraria(livrariaForm);
+        try {
+            if (dbAtivo) {
+                if (livrariaForm.getId() == null) {
+                    livrariaFacade.salvar(livrariaForm);
+                } else {
+                    livrariaFacade.atualizar(livrariaForm);
+                }
+                carregarLivrarias();
+            } else {
+                if (livrariaForm.getId() == null) {
+                    livrariaForm.setId(proximoIdLivraria++);
+                    livrarias.add(livrariaForm);
+                } else {
+                    substituirLivraria(livrariaForm);
+                }
+            }
+            novoLivraria();
+            mensagem("Livraria salva com sucesso.");
+        } catch (Exception e) {
+            mensagem("Erro ao salvar livraria: " + e.getMessage());
         }
-        novoLivraria();
-        mensagem("Livraria salva com sucesso.");
     }
 
     public void excluirLivraria(Livraria livraria) {
-        livrarias.removeIf(item -> Objects.equals(item.getId(), livraria.getId()));
-        livros.stream()
-                .filter(livro -> livro.getLivraria() != null && Objects.equals(livro.getLivraria().getId(), livraria.getId()))
-                .forEach(livro -> livro.setLivraria(null));
-        atualizarQuantidadeLivrosDasLivrarias();
-        if (livrariaForm != null && Objects.equals(livrariaForm.getId(), livraria.getId())) {
-            novoLivraria();
+        try {
+            if (dbAtivo && livraria.getId() != null) {
+                livrariaFacade.remover(livraria.getId());
+                carregarLivros();
+                carregarLivrarias();
+            } else {
+                livrarias.removeIf(item -> Objects.equals(item.getId(), livraria.getId()));
+                livros.stream()
+                        .filter(livro -> livro.getLivraria() != null && Objects.equals(livro.getLivraria().getId(), livraria.getId()))
+                        .forEach(livro -> livro.setLivraria(null));
+            }
+            if (livrariaForm != null && Objects.equals(livrariaForm.getId(), livraria.getId())) {
+                novoLivraria();
+            }
+            mensagem("Livraria removida.");
+        } catch (Exception e) {
+            mensagem("Erro ao remover livraria: " + e.getMessage());
         }
-        mensagem("Livraria removida.");
     }
 
     public void novoLivro() {
@@ -144,26 +252,46 @@ public class LivrariaView implements Serializable {
     }
 
     public void salvarLivro() {
-        livroForm.setLivraria(resolveLivrariaPorId(livroLivrariaId));
-        if (livroForm.getId() == null) {
-            livroForm.setId(proximoIdLivro++);
-            livros.add(livroForm);
-        } else {
-            substituirLivro(livroForm);
+        try {
+            // garante que a livraria seja uma entidade gerenciada ou referência
+            livroForm.setLivraria(resolveLivrariaPorId(livroLivrariaId));
+            if (livroForm.getId() == null) {
+                livroFacade.salvar(livroForm);
+            } else {
+                livroFacade.atualizar(livroForm);
+            }
+            // recarrega lista de livros e livrarias
+            livros.clear();
+            livros.addAll(livroFacade.listarTodos());
+            livrarias.clear();
+            livrarias.addAll(livrariaFacade.listarTodos());
+            atualizarQuantidadeLivrosDasLivrarias();
+            novoLivro();
+            mensagem("Livro salvo com sucesso.");
+        } catch (Exception e) {
+            mensagem("Erro ao salvar livro: " + e.getMessage());
         }
-        atualizarQuantidadeLivrosDasLivrarias();
-        novoLivro();
-        mensagem("Livro salvo com sucesso.");
     }
 
     public void excluirLivro(Livro livro) {
-        livros.removeIf(item -> Objects.equals(item.getId(), livro.getId()));
-        reservas.removeIf(reserva -> reserva.getLivro() != null && Objects.equals(reserva.getLivro().getId(), livro.getId()));
-        atualizarQuantidadeLivrosDasLivrarias();
-        if (livroForm != null && Objects.equals(livroForm.getId(), livro.getId())) {
-            novoLivro();
+        try {
+            if (dbAtivo && livro.getId() != null) {
+                livroFacade.remover(livro.getId());
+                carregarLivros();
+                carregarLivrarias();
+                atualizarQuantidadeLivrosDasLivrarias();
+            } else {
+                livros.removeIf(item -> Objects.equals(item.getId(), livro.getId()));
+                reservas.removeIf(reserva -> reserva.getLivro() != null && Objects.equals(reserva.getLivro().getId(), livro.getId()));
+                atualizarQuantidadeLivrosDasLivrarias();
+            }
+            if (livroForm != null && Objects.equals(livroForm.getId(), livro.getId())) {
+                novoLivro();
+            }
+            mensagem("Livro removido.");
+        } catch (Exception e) {
+            mensagem("Erro ao remover livro: " + e.getMessage());
         }
-        mensagem("Livro removido.");
     }
 
     public void novoCliente() {
@@ -307,6 +435,13 @@ public class LivrariaView implements Serializable {
             }
         }
         return resultado;
+    }
+
+    public List<Livro> getLivrosDaSelecionada() {
+        if (selectedLivraria == null) {
+            return new ArrayList<>();
+        }
+        return getLivrosPorLivraria(selectedLivraria);
     }
 
     public String getLivrosReservadosDoCliente(Cliente cliente) {

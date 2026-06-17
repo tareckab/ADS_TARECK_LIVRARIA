@@ -9,12 +9,13 @@
         <h:form id="formLivros">
             <div class="lv-content-header">
                 <h2>Livros</h2>
-                <p:commandButton value="Novo Livro" icon="pi pi-plus" 
-                               action="#{livroBean.novo()}" 
-                               update=":formLivro" 
-                               oncomplete="PF('dlgLivro').show()" />
+                    <h:panelGroup rendered="#{loginController.adminLogado}">
+                        <p:commandButton value="Novo Livro" icon="pi pi-plus" 
+                                       action="#{livroBean.novo()}" 
+                                       update=":formLivro" 
+                                       oncomplete="PF('dlgLivro').show()" />
+                    </h:panelGroup>
             </div>
-
             <p:dataTable var="livro" value="#{livroBean.livros}" 
                         styleClass="lv-data-table"
                         rowStyleClass="lv-table-row"
@@ -39,17 +40,19 @@
                 </p:column>
 
                 <p:column headerText="Ações" style="width: 120px; text-align: center;">
-                    <p:commandButton icon="pi pi-pencil" 
-                                   action="#{livroBean.editar(livro)}" 
-                                   update=":formLivro" 
-                                   oncomplete="PF('dlgLivro').show()"
-                                   title="Editar" />
-                    <p:commandButton icon="pi pi-trash" 
-                                   action="#{livroBean.remover(livro)}"
-                                   update="formLivros"
-                                   title="Deletar"
-                                   styleClass="ui-button-danger" 
-                                   onclick="return confirm('Deseja remover este livro?')" />
+                    <h:panelGroup rendered="#{loginController.adminLogado}">
+                        <p:commandButton icon="pi pi-pencil" 
+                                       action="#{livroBean.editar(livro)}" 
+                                       update=":formLivro" 
+                                       oncomplete="PF('dlgLivro').show()"
+                                       title="Editar" />
+                        <p:commandButton icon="pi pi-trash" 
+                                       action="#{livroBean.remover(livro)}"
+                                       update="formLivros"
+                                       title="Deletar"
+                                       styleClass="ui-button-danger" 
+                                       onclick="return confirm('Deseja remover este livro?')" />
+                    </h:panelGroup>
                 </p:column>
 
             </p:dataTable>

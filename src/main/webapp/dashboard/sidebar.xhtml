@@ -17,9 +17,11 @@
             <span class="pi pi-building"></span> Livrarias
         </h:link>
 
-        <h:link styleClass="lv-nav-item" outcome="/dashboard/clientes.xhtml">
-            <span class="pi pi-users"></span> Clientes
-        </h:link>
+        <h:panelGroup rendered="#{loginController.adminLogado}">
+            <h:link styleClass="lv-nav-item" outcome="/dashboard/clientes.xhtml">
+                <span class="pi pi-users"></span> Clientes
+            </h:link>
+        </h:panelGroup>
     </nav>
 
 </ui:composition>

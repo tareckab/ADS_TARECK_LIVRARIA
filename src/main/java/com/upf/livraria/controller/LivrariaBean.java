@@ -56,7 +56,8 @@ public class LivrariaBean implements Serializable {
     public void editar(Livraria livraria) {
         this.livrariaSelecionada = livraria;
     }
-
+    
+    
     public void remover(Livraria livraria) {
         try {
             livrariaFacade.remover(livraria.getId());
