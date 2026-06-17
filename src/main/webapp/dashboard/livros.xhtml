@@ -1,15 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form id="formLivros">
+            <div class="lv-content-header">
+                <h2>Livros</h2>
+                <p:commandButton value="Novo Livro" icon="pi pi-plus" 
+                               action="#{livroBean.novo()}" 
+                               update=":formLivro" 
+                               oncomplete="PF('dlgLivro').show()" />
+            </div>
+
+            <p:dataTable var="livro" value="#{livroBean.livros}" 
+                        styleClass="lv-data-table"
+                        rowStyleClass="lv-table-row"
+                        paginator="true" rows="10"
+                        paginatorPosition="bottom"
+                        emptyMessage="Nenhum livro encontrado.">
+
+                <p:column headerText="Título" sortBy="#{livro.titulo}">
+                    <h:outputText value="#{livro.titulo}" />
+                </p:column>
+
+                <p:column headerText="Autor" sortBy="#{livro.autor}">
+                    <h:outputText value="#{livro.autor}" />
+                </p:column>
+
+                <p:column headerText="Livraria" sortBy="#{livro.livraria.nome}">
+                    <h:outputText value="#{livro.livraria.nome}" />
+                </p:column>
+
+                <p:column headerText="Páginas">
+                    <h:outputText value="#{livro.paginas}" />
+                </p:column>
+
+                <p:column headerText="Ações" style="width: 120px; text-align: center;">
+                    <p:commandButton icon="pi pi-pencil" 
+                                   action="#{livroBean.editar(livro)}" 
+                                   update=":formLivro" 
+                                   oncomplete="PF('dlgLivro').show()"
+                                   title="Editar" />
+                    <p:commandButton icon="pi pi-trash" 
+                                   action="#{livroBean.remover(livro)}"
+                                   update="formLivros"
+                                   title="Deletar"
+                                   styleClass="ui-button-danger" 
+                                   onclick="return confirm('Deseja remover este livro?')" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <p:dialog header="Livro" widgetVar="dlgLivro" modal="true" showEffect="fade" hideEffect="fade">
+            <h:form id="formLivro">
+                <div class="p-field p-col-12">
+                    <label>Título <span style="color: red;">*</span></label>
+                    <p:inputText value="#{livroBean.livroSelecionado.titulo}" 
+                                styleClass="w-100" 
+                                maxlength="150"
+                                required="true"
+                                requiredMessage="Título é obrigatório"
+                                validatorMessage="Título não pode exceder 150 caracteres" />
+                </div>
+
+                <div class="p-field p-col-12">
+                    <label>Autor <span style="color: red;">*</span></label>
+                    <p:inputText value="#{livroBean.livroSelecionado.autor}" 
+                                styleClass="w-100" 
+                                maxlength="100"
+                                required="true"
+                                requiredMessage="Autor é obrigatório"
+                                validatorMessage="Autor não pode exceder 100 caracteres" />
+                </div>
+
+                <div class="p-field p-col-12">
+                    <label>Livraria <span style="color: red;">*</span></label>
+                                        <p:selectOneMenu value="#{livroBean.livroSelecionado.livraria}" 
+                                                                        styleClass="w-100"
+                                                                        required="true"
+                                                                        requiredMessage="Livraria é obrigatória"
+                                                                        converter="livrariaConverter">
+                        <f:selectItem itemLabel="Selecione uma livraria" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{livroBean.livrarias}" 
+                                      var="livraria" 
+                                      itemLabel="#{livraria.nome}" 
+                                      itemValue="#{livraria}" />
+                    </p:selectOneMenu>
+                </div>
+
+                <div class="p-field p-col-12">
+                    <label>Páginas</label>
+                    <p:inputNumber value="#{livroBean.livroSelecionado.paginas}" 
+              styleClass="w-100"
+              minValue="1"
+              validatorMessage="Páginas deve ser maior que 0" />
+                </div>
+
+                <div class="p-grid" style="margin-top: 20px; text-align: right;">
+                    <p:commandButton value="Salvar" 
+                action="#{livroBean.salvar()}" 
+                update=":formLivros"
+                                    oncomplete="if(!args.validationFailed) { PF('dlgLivro').hide(); }"
+                                    icon="pi pi-check" />
+                    <p:commandButton value="Cancelar" 
+                                    onclick="PF('dlgLivro').hide()" 
+                                    type="button"
+                                    icon="pi pi-times" />
+                </div>
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

@@ -2,6 +2,7 @@ com\upf\livraria\entity\Cliente.class
 com\upf\livraria\controller\LivrosReservadosController.class
 com\upf\livraria\facade\LivroFacade.class
 com\upf\livraria\controller\DashboardBean.class
+com\upf\livraria\converter\LivrariaConverter.class
 com\upf\livraria\controller\LivrariaBean.class
 com\upf\livraria\facade\ClienteFacade.class
 com\upf\livraria\controller\LoginController.class

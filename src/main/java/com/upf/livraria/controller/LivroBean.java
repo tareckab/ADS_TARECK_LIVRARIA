@@ -39,24 +39,56 @@ public class LivroBean implements Serializable {
     }
 
     public void novo() {
+        resetarFormulario();
+    }
+
+    private void resetarFormulario() {
         livroSelecionado = new Livro();
     }
 
     public void salvar() {
         try {
+            // Validações de negócio antes de salvar
+            if (livroSelecionado.getTitulo() == null || livroSelecionado.getTitulo().trim().isEmpty()) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Título é obrigatório"));
+                return;
+            }
+            if (livroSelecionado.getAutor() == null || livroSelecionado.getAutor().trim().isEmpty()) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Autor é obrigatório"));
+                return;
+            }
+            if (livroSelecionado.getLivraria() == null) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Livraria é obrigatória"));
+                return;
+            }
+            if (livroSelecionado.getPaginas() != null && livroSelecionado.getPaginas() < 1) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Páginas deve ser maior que 0"));
+                return;
+            }
+
+            String acao;
             if (livroSelecionado.getId() == null) {
                 livroFacade.salvar(livroSelecionado);
+                acao = "criado";
             } else {
                 livroFacade.atualizar(livroSelecionado);
+                acao = "atualizado";
             }
             carregarLivros();
-            livroSelecionado = new Livro();
+            resetarFormulario();
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Livro salvo."));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Livro " + acao + " com sucesso."));
+        } catch (IllegalArgumentException e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de Validação", e.getMessage()));
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e.getMessage()));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Falha ao salvar livro: " + e.getMessage()));
         }
     }
 
@@ -66,14 +98,22 @@ public class LivroBean implements Serializable {
 
     public void remover(Livro livro) {
         try {
+            if (livro == null || livro.getId() == null) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Livro inválido para remoção"));
+                return;
+            }
             livroFacade.remover(livro.getId());
             carregarLivros();
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Livro removido."));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Livro removido com sucesso."));
+        } catch (IllegalArgumentException e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de Validação", e.getMessage()));
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e.getMessage()));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Falha ao remover livro: " + e.getMessage()));
         }
     }
 
